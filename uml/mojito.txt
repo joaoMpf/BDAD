@@ -1,0 +1,15 @@
+The owner of the cocktail bar "Mojito" wishes to implement a new information system in order to keep track of her bar's cocktail recipes, clients, employees, suppliers and invoicing. The following requirements have been identified:
+
+
+The bar maintains information about clients and employees. Clients have a name, an email and a phone number. For Employees, the system needs to record an admission date and a social security number. Employees can buy drinks from the bar when they are off-duty.
+
+The bar sells several plain drinks (which have a name, brand and price per glass), some of which alcoholic. For alcoholic drinks, it is necessary to record the Alcohol By Volume value of drink, which ranges from 1% to 100%.
+
+Besides drinks, the bar also sells cocktails. A cocktail (which has a name, a description and a price per glass) is a combination of several drinks in different quantities (in centiliters). The quantity of a drink used in a cocktail is always greater than zero.
+
+Drinks can be bought from suppliers, which have a name, email, mobile phone number and a date of start of contract. Different distributors can sell the drinks at distinct prices at different times of the year. They can also visit the bar and order drinks and cocktails.
+
+Clients attend the bar and order drinks and cocktails at a table. A client is only served by a single employee for every time they come to the bar. When they are finished, clients receive an invoice. In the header, the invoice must mention the number of the table where the client was served, the employee who served the client, a unique sequential number (as required by the tax office) and the date of the invoice. The body of the invoice lists all ordered items and their respective quantities, and the footer mentions the total amount of the invoice. 
+
+The invoice total should be recorded, because its calculation is considered an expensive operation.
+
