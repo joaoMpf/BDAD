@@ -1,0 +1,214 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1671\cocoasubrtf600
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 - USANDO  SELECT INTO ------\
+\
+DECLARE\
+  prod Produto.cod_produto%type;\
+ \
+BEGIN\
+ SELECT cod_produto INTO prod\
+FROM Produto\
+where cod_produto=4;\
+END; \
+\
+--- SE A QUERY RETORNA V\'c1RIAS LINHAS N\'c3O PODEMOS USAR O  SELECT INTO ------\
+\
+declare\
+  prod Produto.cod_produto%type;\
+  \
+Begin \
+  Select  cod_produto into prod\
+  from Produto;\
+end;\
+\
+--- PODEMOS RESOLVER ATRAV\'c9S DE UM CURSOR \'85\'85\
+\
+declare\
+\
+  prod Produto.cod_produto%type;\
+ \
+  CURSOR c_produtos IS \
+      SELECT cod_produto\
+	FROM Produto;\
+\
+Begin \
+ OPEN c_produtos; \
+   	LOOP\
+		FETCH c_produtos INTO prod; \
+		EXIT WHEN c_produtos%notfound;\
+			dbms_output.put_line(' codigo do Produto-->'||  prod);\
+   	END LOOP;\
+   	CLOSE c_produtos;\
+\
+end;\
+\
+-- USANDO CURSORES COM PARAMETROS  -------\
+\
+declare\
+qtd_a_encomendar ArmazemProduto.stock%type; \
+c_produto ArmazemProduto.cod_produto%type;\
+c_stock ArmazemProduto.stock%type;\
+c_stock_minimo ArmazemProduto.stock_minimo%type;\
+\
+-- definicao do cursor com parametros ------\
+CURSOR c_produtos(armazem ArmazemProduto.cod_armazem%type) IS\
+          SELECT cod_produto, stock, stock_minimo FROM ArmazemProduto\
+          WHERE cod_armazem = armazem;\
+         \
+begin\
+\
+    OPEN c_produtos(1); \
+   	LOOP\
+		FETCH c_produtos INTO c_produto, c_stock, c_stock_minimo; \
+		EXIT WHEN c_produtos%notfound;\
+		qtd_a_encomendar := 12 * c_stock_minimo - c_stock;\
+		dbms_output.put_line(c_produto || ' - ' || qtd_a_encomendar);\
+   		\
+   	END LOOP;\
+   	CLOSE c_produtos;\
+ end;   	\
+\
+---- USANDO CICLO FOR COM QUERIES-------\
+\
+declare\
+qtd_a_encomendar ArmazemProduto.stock%type; \
+begin\
+		FOR c_produtos IN ( SELECT cod_produto, stock, stock_minimo FROM ArmazemProduto WHERE COD_ARMAZEM = 1)\
+	    LOOP \
+	    BEGIN\
+          qtd_a_encomendar := 12 * c_produtos.stock_minimo - c_produtos.stock;\
+		 dbms_output.put_line(c_produtos.cod_produto || ' - ' || qtd_a_encomendar);\
+		 END;\
+     	END LOOP;\
+ end;   \
+\
+\
+-- USANDO EXCE\'c7\'d5ES\'97-\
+--Exemplificando : Gerar exce\'e7\'f5es para \'93armaz\'e9m inexistente\'94 e \
+--para armaz\'e9m em que n\'e3o seja necess\'e1rio encomendar nenhum produto, \'93vendas_reduzidas\'94.\
+-- testar com codigo = 100 - n\'e3o existe esse codigo; codigo = 4 - vendas reduzidas.....\
+\
+declare\
+qtd_a_encomendar ArmazemProduto.stock%type; \
+c_produto ArmazemProduto.cod_produto%type;\
+c_stock ArmazemProduto.stock%type;\
+c_stock_minimo ArmazemProduto.stock_minimo%type;\
+\
+vendas_reduzidas BOOLEAN := TRUE;\
+\
+CURSOR c_produtos(armazem ArmazemProduto.cod_armazem%type) IS\
+          SELECT cod_produto, stock, stock_minimo FROM ArmazemProduto\
+          WHERE cod_armazem = armazem;\
+          \
+ -- VARIAVEIS DE EXCE\'c7\'d5ES\'97\'97\'97\
+   armazem_inexistente EXCEPTION;\
+   low_sales EXCEPTION;\
+   dummy Armazem.cod_armazem%type;\
+\
+begin\
+SELECT COUNT(*) INTO dummy FROM Armazem WHERE cod_armazem = 4;\
+\
+\'97 LEVANTAR EXCE\'c7\'d5ES\
+   IF dummy = 0 THEN\
+	RAISE armazem_inexistente; \
+   ELSE\
+\
+    OPEN c_produtos(4); \
+   	LOOP\
+		FETCH c_produtos INTO c_produto, c_stock, c_stock_minimo; \
+		EXIT WHEN c_produtos%notfound;\
+		qtd_a_encomendar := 12 * c_stock_minimo - c_stock;\
+   		IF qtd_a_encomendar > 0 THEN\
+			Vendas_reduzidas := FALSE;\
+			dbms_output.put_line(c_produto || ' - ' || qtd_a_encomendar);\
+		END IF;\
+   	END LOOP;\
+   	CLOSE c_produtos;\
+   	\
+-- LEVANTAR EXCE\'c7\'d5ES \'97\'97\'97\
+   	IF vendas_reduzidas THEN\
+		RAISE low_sales;\
+	END IF;\
+   END IF;\
+\
+EXCEPTION \
+   	WHEN armazem_inexistente THEN \
+      		dbms_output.put_line('N\'e3o existe nenhum armaz\'e9m com esse codigo'); \
+   	WHEN low_sales THEN \
+      		dbms_output.put_line('O armaz\'e9m  tem vendas reduzidas.'); \
+    \
+END; \
+\
+\'97CRIAR UM BLOCO NOMEADO \'97 PROCEDIMENTO -----\
+-- BASTA CRIAR CABE\'c7ALHO COM PARAMTROS  E  SUBSTITUIR DECLARE POR AS\'97\'97 \
+\
+CREATE OR REPLACE PROCEDURE repor_stocks(armazem_a_reabastecer ArmazemProduto.cod_armazem%type) AS\
+   qtd_a_encomendar ArmazemProduto.stock%type; \
+   c_produto ArmazemProduto.cod_produto%type; \
+   c_stock ArmazemProduto.stock%type; \
+   c_stock_minimo ArmazemProduto.stock_minimo%type; \
+   CURSOR c_produtos(armazem ArmazemProduto.cod_armazem%type) IS \
+      SELECT cod_produto, stock, stock_minimo\
+	FROM ArmazemProduto\
+	WHERE cod_armazem = armazem;\
+   armazem_inexistente EXCEPTION;\
+   low_sales EXCEPTION;\
+   vendas_reduzidas BOOLEAN := TRUE;\
+   dummy Armazem.cod_armazem%type;\
+BEGIN\
+   SELECT COUNT(*) INTO dummy FROM Armazem WHERE cod_armazem = armazem_a_reabastecer;\
+   IF dummy = 0 THEN\
+	RAISE armazem_inexistente;\
+   ELSE\
+   	OPEN c_produtos(armazem_a_reabastecer); \
+   	LOOP\
+		FETCH c_produtos INTO c_produto, c_stock, c_stock_minimo; \
+		EXIT WHEN c_produtos%notfound;\
+		qtd_a_encomendar := 12 * c_stock_minimo - c_stock;\
+   		IF qtd_a_encomendar > 0 THEN\
+			Vendas_reduzidas := FALSE;\
+			dbms_output.put_line(c_produto || ' - ' || qtd_a_encomendar);\
+		END IF;\
+   	END LOOP;\
+   	CLOSE c_produtos;\
+	IF vendas_reduzidas THEN\
+		RAISE low_sales;\
+	END IF;\
+   END IF;\
+\
+   EXCEPTION \
+   	WHEN armazem_inexistente THEN \
+      		dbms_output.put_line('N\'e3o existe nenhum armaz\'e9m com o c\'f3digo ' || armazem_a_reabastecer); \
+   	WHEN low_sales THEN \
+      		dbms_output.put_line('O armaz\'e9m ' || armazem_a_reabastecer || ' tem vendas reduzidas.'); \
+\
+END; \
+\
+---- COMO CHAMAR O PROCEDIMENTO\'97\'97 \
+\
+EXEC repor_stocks(2);\
+EXEC repor_stocks(100);\
+EXEC repor_stocks(4);\
+\
+-- OU ----\
+Begin\
+repor_stocks(2);\
+end;\
+-------------------\
+Begin\
+repor_stocks(100);\
+end;\
+-------------------\
+Begin\
+repor_stocks(4);\
+end;\
+\
+--- SET serveroutput on; ------ para visualizar os dados --- \
+}
