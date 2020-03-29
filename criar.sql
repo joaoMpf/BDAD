@@ -1,10 +1,10 @@
 CREATE TABLE Person (
   NIF integer primary key,
-  name text,
-  birth_date integer,
+  name text NOTNULL,
+  birth_date integer NOTNULL,
   email text,
-  phone integer,
-  password text
+  phone integer NOTNULL CHECK(length(phone) >= 9),
+  password text NOTNULL
 );
 CREATE TABLE Customer (
   customerNIF integer,
@@ -13,47 +13,50 @@ CREATE TABLE Customer (
 CREATE TABLE Driver (
   driverNIF integer,
   FOREIGN KEY(driverNIF) REFERENCES Person(NIF),
-  ss_number integer,
-  start_date text,
-  rating_average integer,
-  --TODO: meter calculos
+  ss_number integer NOTNULL CHECK(length(ss_number) = 11),
+  start_date text NOTNULL,
+  rating_average integer DEFAULT NULL --TODO: meter calculos
 );
 CREATE TABLE TeamLeader (
   --! será que é assim?
   driver1NIF integer,
   FOREIGN KEY(driver1NIF) REFERENCES Person(NIF),
   driver2NIF integer,
-  FOREIGN KEY(driver2NIF) REFERENCES Person(NIF),
+  FOREIGN KEY(driver2NIF) REFERENCES Person(NIF)
 );
 CREATE TABLE Vehicle (
-  license_plate integer,
-  make text,
-  model text,
+  license_plate integer NOTNULL CHECK(length(license_plate) >= 6),
+  make text NOTNULL,
+  model text NOTNULL,
   driverNIF integer,
-  FOREIGN KEY(driverNIF) REFERENCES Driver(driverNIF),
+  FOREIGN KEY(driverNIF) REFERENCES Driver(driverNIF)
 );
 CREATE TABLE VehicleDriver (
   driver1NIF integer,
   FOREIGN KEY(driver1NIF) REFERENCES Driver(driverNIF),
   driver2NIF integer,
   FOREIGN KEY(driver2NIF) REFERENCES Driver(driverNIF),
-  begin text,
-end text --TODO: begin < end
+  begin_date text NOTNULL,
+  end_date text NOTNULL,
+  CHECK(begin_date < end_date)
 );
 CREATE TABLE CreditCard (
-  number integer,
-  cvv integer,
-  exp_date text,
-  card_type text,
+  number_cc integer NOTNULL CHECK(
+    length(number_cc) >= 13
+    AND length(number_cc) <= 19
+  ),
+  cvv integer NOTNULL CHECK(length(cvv) = 3),
+  exp_date text NOTNULL,
+  card_type text NOTNULL,
   customerNIF integer,
   FOREIGN KEY(customerNIF) REFERENCES Customer(customerNIF)
 );
 CREATE TABLE Order (
   orderID integer PRIMARY KEY,
-  date text,
-  price integer,
+  date text NOTNULL,
+  price integer NOTNULL CHECK(price > delivery_fee),
   especification text,
-  delivery_fee integer,
+  delivery_fee integer CHECK(delivery_fee >= 0),
   customerNIF integer,
   FOREIGN KEY(customerNIF) REFERENCES Customer(customerNIF),
   driverNIF integer,
@@ -67,11 +70,14 @@ CREATE TABLE Order (
 );
 CREATE TABLE PaymentType (
   paymentTypeID integer PRIMARY KEY,
-  type text,
+  type text NOTNULL,
 );
 CREATE TABLE Review (
   reviewID integer PRIMARY KEY,
-  rating integer,
+  rating integer CHECK(
+    rating > 0
+    AND rating <= 5
+  ),
   --TODO: meter restições
   description text,
   orderID integer,
@@ -79,19 +85,22 @@ CREATE TABLE Review (
 );
 CREATE TABLE Rating (
   ratingID integer PRIMARY KEY,
-  rating integer --TODO: meter calculos
+  rating integer CHECK(
+    rating > 0
+    AND rating <= 5
+  )
 );
 CREATE TABLE Food (
   foodID integer PRIMARY KEY,
-  name text,
-  price integer,
+  name text NOTNULL,
+  price integer NOTNULL CHECK(price > 0),
   restaurantID integer,
   FOREIGN KEY(restaurantID) REFERENCES Restaurant(restaurantID)
 );
 CREATE TABLE Restaurant (
   restaurantID integer PRIMARY KEY,
-  name text,
-  NIF integer,
+  name text NOTNULL,
+  NIF integer NOTNULL CHECK(length(NIF) = 9),
   locationID integer,
   FOREIGN KEY(locationID) REFERENCES Location(locationID),
   rating_average integer,
@@ -101,26 +110,26 @@ CREATE TABLE Restaurant (
 );
 CREATE TABLE RestaurantType (
   restaurantTypeID integer PRIMARY KEY,
-  type text
+  type text NOTNULL
 );
 CREATE TABLE Location (
   locationID integer PRIMARY KEY,
-  city text,
-  street_name text,
-  street_number text,
-  postal_code text
+  city text NOTNULL,
+  street_name text NOTNULL,
+  street_number text NOTNULL,
+  postal_code text NOTNULL
 );
 CREATE TABLE Invoice (
   invoiceID integer PRIMARY KEY,
-  total integer,
+  total integer NOTNULL,
   --TODO: meter calculos
-  date text,
+  date text NOTNULL,
   orderID integer,
   FOREIGN KEY(orderID) REFERENCES Order(orderID)
 );
 CREATE TABLE InvoiceLine (
   invoice_lineID integer PRIMARY KEY,
-  quantity integer,
+  quantity integer NOTNULL,
   foodID integer,
   FOREIGN KEY(foodID) REFERENCES Food(foodID),
   invoiceID integer,
