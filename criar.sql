@@ -15,7 +15,7 @@ CREATE TABLE Driver (
   FOREIGN KEY(driverNIF) REFERENCES Person(NIF),
   ss_number integer NOTNULL CHECK(length(ss_number) = 11),
   start_date text NOTNULL,
-  rating_average integer DEFAULT NULL --TODO: meter calculos
+  --rating_average integer DEFAULT NULL --TODO: meter calculos
 );
 CREATE TABLE TeamLeader (
   --! será que é assim?
@@ -78,7 +78,6 @@ CREATE TABLE Review (
     rating > 0
     AND rating <= 5
   ),
-  --TODO: meter restições
   description text,
   orderID integer,
   FOREIGN KEY(orderID) REFERENCES Order(orderID)
@@ -103,8 +102,7 @@ CREATE TABLE Restaurant (
   NIF integer NOTNULL CHECK(length(NIF) = 9),
   locationID integer,
   FOREIGN KEY(locationID) REFERENCES Location(locationID),
-  rating_average integer,
-  --TODO: meter calculos
+  --rating_average integer,  --TODO: meter calculos
   restaurantTypeID integer,
   FOREIGN KEY(restaurantTypeID) REFERENCES RestaurantType(restaurantTypeID)
 );
@@ -121,8 +119,7 @@ CREATE TABLE Location (
 );
 CREATE TABLE Invoice (
   invoiceID integer PRIMARY KEY,
-  total integer NOTNULL,
-  --TODO: meter calculos
+  --total integer NOTNULL, --TODO: meter calculos
   date text NOTNULL,
   orderID integer,
   FOREIGN KEY(orderID) REFERENCES Order(orderID)
