@@ -1,3 +1,5 @@
+PRAGMA foreign_keys = ON;
+PRAGMA encoding = "UTF-8";
 DROP TABLE IF EXISTS Person;
 DROP TABLE IF EXISTS Customer;
 DROP TABLE IF EXISTS Driver;
