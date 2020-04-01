@@ -36,9 +36,18 @@ CREATE TABLE Driver (
   driverNIF INTEGER REFERENCES Person(NIF),
   start_date DATE NOT NULL,
   ss_number INTEGER NOT NULL CHECK(length(ss_number) >= 11),
+  --team_leader TEXT REFERENCES TeamLeader,
   rating_average REAL DEFAULT NULL,
   CONSTRAINT driver_pk PRIMARY KEY (driverNIF)
 );
+
+/*CREATE TABLE TeamLeader (
+  --! será que é assim?
+  driver1NIF integer,
+  FOREIGN KEY(driver1NIF) REFERENCES Person(NIF),
+  driver2NIF integer,
+  FOREIGN KEY(driver2NIF) REFERENCES Person(NIF)
+);*/
 
 CREATE TABLE Vehicle (
   license_plate INTEGER NOT NULL CHECK(length(license_plate) >= 6),
@@ -146,6 +155,15 @@ CREATE TABLE InvoiceLine (
   CONSTRAINT invoice_line_pk PRIMARY KEY (invoice_lineID)
 );
 
+
+
+
+
+
+
+/*----------------------------VALUE INSERTIONS-----------------------------*/
+
+
 INSERT INTO Person VALUES(1,"Joao","01-01-01","joao@email.com",912345678,"1234");
 INSERT INTO Person VALUES(2,"Jose","02-02-02","jose@email.com",923456781,"1234");
 INSERT INTO Person VALUES(3,"Miguel","03-03-03","miguel@email.com",9345678912,"1234");
@@ -158,12 +176,14 @@ INSERT INTO Driver VALUES(3,"03-03-03",12345678903, -1);
 
 --SELECT * FROM Driver;
 
+--SELECT name FROM Person JOIN Driver WHERE NIF = driverNIF;
+
 INSERT INTO Demand(DemandID, date, delivery_fee, price, driverNIF) VALUES (1,"01-01-01",1,2,1);
-INSERT INTO Demand(DemandID, date, delivery_fee, price, driverNIF) VALUES (2,"01-01-01",1,2,1);
-INSERT INTO Demand(DemandID, date, delivery_fee, price, driverNIF) VALUES (3,"01-01-01",1,2,2);
+INSERT INTO Demand(DemandID, date, delivery_fee, price, driverNIF) VALUES (2,"01-01-01",1,2,2);
+INSERT INTO Demand(DemandID, date, delivery_fee, price, driverNIF) VALUES (3,"01-01-01",1,2,3);
 INSERT INTO Demand(DemandID, date, delivery_fee, price, driverNIF) VALUES (4,"01-01-01",1,2,1);
-INSERT INTO Demand(DemandID, date, delivery_fee, price, driverNIF) VALUES (5,"01-01-01",1,2,1);
-INSERT INTO Demand(DemandID, date, delivery_fee, price, driverNIF) VALUES (6,"01-01-01",1,2,2);
+INSERT INTO Demand(DemandID, date, delivery_fee, price, driverNIF) VALUES (5,"01-01-01",1,2,2);
+INSERT INTO Demand(DemandID, date, delivery_fee, price, driverNIF) VALUES (6,"01-01-01",1,2,3);
 
 --SELECT * FROM Demand;
 
@@ -173,27 +193,23 @@ INSERT INTO Review(reviewID, rating, demandID) VALUES(2,4,3);
 INSERT INTO Review(reviewID, rating, demandID) VALUES(2,3,4);
 INSERT INTO Review(reviewID, rating, demandID) VALUES(3,5,5);
 INSERT INTO Review(reviewID, rating, demandID) VALUES(3,4,6);
-/*
-UPDATE Driver
-  SET rating_average = (
-    SELECT AVG(rating) FROM Review WHERE DemandID IN (
-      SELECT demandID FROM Demand WHERE DriverNIF = 1
-    )
-  )
-  WHERE DriverNIF = 1;
+
+
+/*drivers' average rating calculations*/
 
 UPDATE Driver
   SET rating_average = (
-    SELECT AVG(r.rating) FROM Demand as d JOIN Review as r WHERE d.demandID = r.demandID AND d.driverNIF = 1;  
-  )
-  WHERE DriverNIF = 1;
-*/
-
---SELECT * FROM Demand;
+    SELECT AVG(Review.rating) FROM Demand JOIN Review WHERE (Demand.driverNIF = 1 AND Demand.demandID = Review.demandID)
+  ) WHERE driverNIF = 1;
 
 UPDATE Driver
   SET rating_average = (
-    SELECT AVG(r.rating) FROM Demand as d JOIN Review as r WHERE d.demandID = r.demandID AND d.driverNIF = driverNIF
-  );
+    SELECT AVG(Review.rating) FROM Demand JOIN Review WHERE (Demand.driverNIF = 2 AND Demand.demandID = Review.demandID)
+  ) WHERE driverNIF = 2;
+
+UPDATE Driver
+  SET rating_average = (
+    SELECT AVG(Review.rating) FROM Demand JOIN Review WHERE (Demand.driverNIF = 3 AND Demand.demandID = Review.demandID)
+  ) WHERE driverNIF = 3;
 
 SELECT * FROM Driver;
