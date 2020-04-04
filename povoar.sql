@@ -28,11 +28,8 @@ INSERT INTO Demand(DemandID, date, delivery_fee, price, driverNIF) VALUES (6,"01
 --SELECT * FROM Demand;
 
 INSERT INTO Review(reviewID, rating, demandID) VALUES(1,1,1);
-INSERT INTO Review(reviewID, rating, demandID) VALUES(1,5,2);
-INSERT INTO Review(reviewID, rating, demandID) VALUES(2,4,3);
-INSERT INTO Review(reviewID, rating, demandID) VALUES(2,3,4);
-INSERT INTO Review(reviewID, rating, demandID) VALUES(3,5,5);
-INSERT INTO Review(reviewID, rating, demandID) VALUES(3,4,6);
-
-
-
+INSERT INTO Review(reviewID, rating, demandID) VALUES(2,5,2);
+INSERT INTO Review(reviewID, rating, demandID) VALUES(3,4,3);
+INSERT INTO Review(reviewID, rating, demandID) VALUES(4,3,4);
+INSERT INTO Review(reviewID, rating, demandID) VALUES(5,5,5);
+INSERT INTO Review(reviewID, rating, demandID) VALUES(6,4,6);
