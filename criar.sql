@@ -82,7 +82,7 @@ CREATE TABLE Demand (
   driverNIF INTEGER REFERENCES Driver(driverNIF),
   locationID INTEGER REFERENCES Location(locationID),
   paymentTypeID INTEGER REFERENCES PaymentType(paymentTypeID),
-  CONSTRAINT Demand_pk PRIMARY KEY (DemandID)
+  CONSTRAINT demand_pk PRIMARY KEY (demandID)
 );
 CREATE TABLE Demanded (
   foodID INTEGER,
@@ -90,22 +90,21 @@ CREATE TABLE Demanded (
   quantity INTEGER NOT NULL,
   FOREIGN KEY(foodID) REFERENCES Food(foodID),
   FOREIGN KEY(demandID) REFERENCES Demand(demandID),
-  CONSTRAINT Demand_pk PRIMARY KEY (DemandID, foodID)
+  CONSTRAINT demanded_pk PRIMARY KEY (demandID, foodID)
 );
 CREATE TABLE PaymentType (
   paymentTypeID INTEGER PRIMARY KEY,
   type TEXT NOT NULL
 );
 CREATE TABLE Review (
-  reviewID INTEGER,
-  --PRIMARY KEY,
+  reviewID INTEGER PRIMARY KEY,
   rating INTEGER CHECK(
     rating > 0
     AND rating <= 5
   ),
   description TEXT,
-  DemandID INTEGER,
-  FOREIGN KEY(DemandID) REFERENCES Demand(DemandID)
+  demandID INTEGER,
+  FOREIGN KEY(DemandID) REFERENCES Demand(demandID)
 );
 CREATE TABLE Rating (
   ratingID INTEGER PRIMARY KEY,
