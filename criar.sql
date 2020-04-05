@@ -19,7 +19,7 @@ DROP TABLE IF EXISTS Location;
 DROP TABLE IF EXISTS Invoice;
 DROP TABLE IF EXISTS InvoiceLine;
 CREATE TABLE Person (
-  NIF INTEGER NOT NULL,
+  NIF INTEGER NOT NULL CHECK(length(NIF) = 9),
   name TEXT NOT NULL,
   birth_date DATE NOT NULL,
   email TEXT,
@@ -47,7 +47,7 @@ CREATE TABLE Team (
   CONSTRAINT team_pk PRIMARY KEY (driverNIF)
 );
 CREATE TABLE Vehicle (
-  license_plate TEXT NOT NULL CHECK(length(license_plate) >= 6),
+  license_plate TEXT NOT NULL CHECK(length(license_plate) = 8),
   make TEXT NOT NULL,
   model TEXT NOT NULL,
   CONSTRAINT vehicle_pk PRIMARY KEY (license_plate)
@@ -77,7 +77,7 @@ CREATE TABLE Demand (
   date TEXT NOT NULL,
   specification TEXT,
   delivery_fee REAL NOT NULL CHECK(delivery_fee >= 0),
-  price REAL NOT NULL CHECK(price >= delivery_fee),
+  price REAL NOT NULL CHECK(price >= 0),
   --TODO: meter calculos
   number_cc INTEGER, --TODO: se paymentType = 1 (creditCard) -> update number_cc com creditCard de customer
   customerNIF INTEGER REFERENCES Customer(customerNIF),
