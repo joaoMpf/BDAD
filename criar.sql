@@ -47,14 +47,14 @@ CREATE TABLE Team (
   CONSTRAINT team_pk PRIMARY KEY (driverNIF)
 );
 CREATE TABLE Vehicle (
-  license_plate INTEGER NOT NULL CHECK(length(license_plate) >= 6),
+  license_plate TEXT NOT NULL CHECK(length(license_plate) >= 6),
   make TEXT NOT NULL,
   model TEXT NOT NULL,
   CONSTRAINT vehicle_pk PRIMARY KEY (license_plate)
 );
 CREATE TABLE VehicleDriver (
   driverNIF INTEGER REFERENCES Driver(driverNIF),
-  license_plate INTEGER REFERENCES Vehicle(license_plate),
+  license_plate TEXT REFERENCES Vehicle(license_plate),
   begin_date TEXT NOT NULL,
   end_date TEXT NOT NULL,
   CHECK(begin_date < end_date) CONSTRAINT vehicleDriver_pk PRIMARY KEY (driverNIF, license_plate)
