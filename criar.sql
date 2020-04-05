@@ -86,12 +86,13 @@ CREATE TABLE Demand (
   CONSTRAINT demand_pk PRIMARY KEY (demandID)
 );
 CREATE TABLE Demanded (
+  demandedID INTEGER,
   foodID INTEGER,
   demandID INTEGER,
   quantity INTEGER NOT NULL,
   FOREIGN KEY(foodID) REFERENCES Food(foodID),
   FOREIGN KEY(demandID) REFERENCES Demand(demandID),
-  CONSTRAINT demanded_pk PRIMARY KEY (demandID, foodID)
+  CONSTRAINT demanded_pk PRIMARY KEY (demandedID)
 );
 CREATE TABLE PaymentType (
   paymentTypeID INTEGER PRIMARY KEY,
@@ -153,9 +154,9 @@ CREATE TABLE Invoice (
 );
 CREATE TABLE InvoiceLine (
   invoice_lineID INTEGER,
-  DemandedID INTEGER,
+  demandedID INTEGER,
   invoiceID INTEGER,
-  FOREIGN KEY(DemandedID) REFERENCES Demanded(DemandID),
+  FOREIGN KEY(DemandedID) REFERENCES Demanded(demandedID),
   FOREIGN KEY(invoiceID) REFERENCES Invoice(invoiceID),
   CONSTRAINT invoice_line_pk PRIMARY KEY (invoice_lineID)
 );
