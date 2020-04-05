@@ -57,7 +57,8 @@ CREATE TABLE VehicleDriver (
   license_plate TEXT REFERENCES Vehicle(license_plate),
   begin_date TEXT NOT NULL,
   end_date TEXT NOT NULL,
-  CHECK(begin_date < end_date) CONSTRAINT vehicleDriver_pk PRIMARY KEY (driverNIF, license_plate)
+  CHECK(begin_date < end_date),
+  CONSTRAINT vehicleDriver_pk PRIMARY KEY (begin_date, driverNIF)
 );
 CREATE TABLE CreditCard (
   number_cc INTEGER NOT NULL CHECK(
@@ -75,8 +76,8 @@ CREATE TABLE Demand (
   demandID INTEGER,
   date TEXT NOT NULL,
   specification TEXT,
-  delivery_fee INTEGER NOT NULL CHECK(delivery_fee >= 0),
-  price INTEGER NOT NULL CHECK(price >= delivery_fee),
+  delivery_fee REAL NOT NULL CHECK(delivery_fee >= 0),
+  price REAL NOT NULL CHECK(price >= delivery_fee),
   --TODO: meter calculos
   customerNIF INTEGER REFERENCES Customer(customerNIF),
   driverNIF INTEGER REFERENCES Driver(driverNIF),
@@ -131,7 +132,7 @@ CREATE TABLE RestaurantType (
 CREATE TABLE Food (
   foodID INTEGER PRIMARY KEY,
   name TEXT NOT NULL,
-  price INTEGER NOT NULL CHECK(price > 0),
+  price REAL NOT NULL CHECK(price > 0),
   restaurantID INTEGER,
   FOREIGN KEY(restaurantID) REFERENCES Restaurant(restaurantID)
 );
@@ -139,12 +140,11 @@ CREATE TABLE Location (
   locationID INTEGER PRIMARY KEY,
   city TEXT NOT NULL,
   street_name TEXT NOT NULL,
-  street_number TEXT NOT NULL,
   postal_code TEXT NOT NULL
 );
 CREATE TABLE Invoice (
   invoiceID INTEGER,
-  total INTEGER NOT NULL,
+  total REAL NOT NULL,
   --TODO: meter calculos
   date TEXT NOT NULL,
   DemandID INTEGER,
