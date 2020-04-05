@@ -79,10 +79,12 @@ CREATE TABLE Demand (
   delivery_fee REAL NOT NULL CHECK(delivery_fee >= 0),
   price REAL NOT NULL CHECK(price >= delivery_fee),
   --TODO: meter calculos
+  number_cc INTEGER, --TODO: se paymentType = 1 (creditCard) -> update number_cc com creditCard de customer
   customerNIF INTEGER REFERENCES Customer(customerNIF),
   driverNIF INTEGER REFERENCES Driver(driverNIF),
   locationID INTEGER REFERENCES Location(locationID),
   paymentTypeID INTEGER REFERENCES PaymentType(paymentTypeID),
+  FOREIGN KEY(customerNIF, number_cc) REFERENCES CreditCard(customerNIF, number_cc),
   CONSTRAINT demand_pk PRIMARY KEY (demandID)
 );
 CREATE TABLE Demanded (
