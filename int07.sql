@@ -11,4 +11,5 @@ WHERE
   strftime('%Y', date) = '2019'
   AND strftime('%m', date) = '04'
 ORDER BY
-  total DESC;
+  total DESC
+LIMIT 5;
