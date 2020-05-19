@@ -240,25 +240,25 @@ INSERT INTO Demand (demandID,date,specification,delivery_fee,price,customerNIF,d
 --SELECT * FROM Demand;
 
 INSERT INTO Demanded (demandedID,foodID,demandID,quantity) VALUES (1,49,5,9),(2,18,42,1),(3,36,25,5),(4,13,49,2),(5,31,14,7),(6,7,17,8),(7,11,18,9),(8,41,25,8),(9,22,2,6),(10,14,31,4);
-INSERT INTO Demanded (demandedID,foodID,demandID,quantity) VALUES (11,1,3,2),(12,30,24,4),(13,33,2,5),(14,26,38,6),(15,42,45,4),(16,21,9,5),(17,8,6,7),(18,46,19,2),(19,30,2,1),(20,13,33,7);
+INSERT INTO Demanded (demandedID,foodID,demandID,quantity) VALUES (11,2,3,2),(12,30,24,4),(13,33,2,5),(14,26,38,6),(15,42,45,4),(16,21,9,5),(17,8,6,7),(18,46,19,2),(19,30,2,1),(20,13,33,7);
 INSERT INTO Demanded (demandedID,foodID,demandID,quantity) VALUES (21,7,34,3),(22,46,43,3),(23,21,32,6),(24,4,15,9),(25,29,36,10),(26,37,42,3),(27,42,8,2),(28,40,14,3),(29,3,23,5),(30,13,12,3);
 INSERT INTO Demanded (demandedID,foodID,demandID,quantity) VALUES (31,4,22,10),(32,9,11,10),(33,42,23,7),(34,26,42,7),(35,11,30,10),(36,16,22,8),(37,30,24,3),(38,32,19,4),(39,21,27,2),(40,33,43,1);
 INSERT INTO Demanded (demandedID,foodID,demandID,quantity) VALUES (41,38,34,8),(42,27,50,6),(43,35,8,7),(44,17,40,3),(45,47,6,6),(46,19,26,10),(47,36,10,4),(48,12,17,8),(49,20,34,8),(50,28,3,2);
-INSERT INTO Demanded (demandedID,foodID,demandID,quantity) VALUES (51,43,13,9),(52,47,48,10),(53,7,41,6),(54,47,44,2),(55,20,29,8),(56,36,19,8),(57,13,28,10),(58,50,17,10),(59,1,45,10),(60,7,45,1);
-INSERT INTO Demanded (demandedID,foodID,demandID,quantity) VALUES (61,19,26,3),(62,28,34,6),(63,32,1,1),(64,37,31,10),(65,12,2,8),(66,12,4,8),(67,42,19,4),(68,11,50,1),(69,13,48,10),(70,20,48,2);
+INSERT INTO Demanded (demandedID,foodID,demandID,quantity) VALUES (51,43,13,9),(52,47,48,10),(53,7,41,6),(54,47,44,2),(55,20,29,8),(56,36,19,8),(57,13,28,10),(58,50,17,10),(59,2,45,10),(60,7,45,1);
+INSERT INTO Demanded (demandedID,foodID,demandID,quantity) VALUES (61,19,26,3),(62,28,34,6),(63,32,2,1),(64,37,31,10),(65,12,2,8),(66,12,4,8),(67,42,19,4),(68,11,50,1),(69,13,48,10),(70,20,48,2);
 INSERT INTO Demanded (demandedID,foodID,demandID,quantity) VALUES (71,24,20,6),(72,43,8,3),(73,25,21,4),(74,27,36,6),(75,44,47,7),(76,30,8,10),(77,8,35,3),(78,38,7,1),(79,33,37,6),(80,17,6,10);
 INSERT INTO Demanded (demandedID,foodID,demandID,quantity) VALUES (81,45,29,8),(82,49,40,6),(83,18,41,6),(84,12,43,3),(85,32,11,1),(86,12,15,4),(87,4,15,5),(88,31,7,4),(89,6,33,6),(90,2,46,4);
 INSERT INTO Demanded (demandedID,foodID,demandID,quantity) VALUES (91,39,2,8),(92,22,15,1),(93,2,21,6),(94,8,19,6),(95,40,15,3),(96,12,29,9),(97,7,15,3),(98,21,8,5),(99,20,32,1),(100,24,20,5);
 INSERT INTO Demanded (demandedID,foodID,demandID,quantity) VALUES (101,29,50,2),(102,10,26,7),(103,44,50,7),(104,30,38,2),(105,36,23,7),(106,13,27,6),(107,34,25,8),(108,44,41,2),(109,18,25,3),(110,18,15,9);
-INSERT INTO Demanded (demandedID,foodID,demandID,quantity) VALUES (111,47,15,2),(112,11,14,10),(113,50,14,5),(114,32,7,10),(115,31,15,3),(116,18,1,9),(117,27,4,9),(118,34,21,6),(119,50,48,1),(120,32,37,6);
+INSERT INTO Demanded (demandedID,foodID,demandID,quantity) VALUES (111,47,15,2),(112,11,14,10),(113,50,14,5),(114,32,7,10),(115,31,15,3),(116,18,2,9),(117,27,4,9),(118,34,21,6),(119,50,48,1),(120,32,37,6);
 INSERT INTO Demanded (demandedID,foodID,demandID,quantity) VALUES (121,47,15,9),(122,45,31,10),(123,4,5,2),(124,15,14,9),(125,36,27,4),(126,29,10,1),(127,4,44,6),(128,33,22,3),(129,40,5,6),(130,50,26,3);
 INSERT INTO Demanded (demandedID,foodID,demandID,quantity) VALUES (131,33,25,7),(132,38,47,6),(133,25,3,2),(134,42,47,4),(135,29,33,2),(136,4,8,8),(137,48,48,9),(138,11,29,2),(139,11,21,6),(140,30,21,4);
 INSERT INTO Demanded (demandedID,foodID,demandID,quantity) VALUES (141,31,19,7),(142,33,40,6),(143,23,34,3),(144,28,37,10),(145,17,39,10),(146,46,42,8),(147,50,23,3),(148,48,33,6),(149,14,14,5),(150,29,41,1);
-INSERT INTO Demanded (demandedID,foodID,demandID,quantity) VALUES (151,46,6,9),(152,19,46,2),(153,37,10,5),(154,24,20,1),(155,40,1,2),(156,27,6,6),(157,17,42,2),(158,8,5,6),(159,6,5,7),(160,46,11,6);
+INSERT INTO Demanded (demandedID,foodID,demandID,quantity) VALUES (151,46,6,9),(152,19,46,2),(153,37,10,5),(154,24,20,1),(155,40,2,2),(156,27,6,6),(157,17,42,2),(158,8,5,6),(159,6,5,7),(160,46,11,6);
 INSERT INTO Demanded (demandedID,foodID,demandID,quantity) VALUES (161,42,36,10),(162,9,28,10),(163,18,24,3),(164,6,37,6),(165,31,30,5),(166,11,48,9),(167,26,30,9),(168,8,35,6),(169,24,20,4),(170,17,46,2);
-INSERT INTO Demanded (demandedID,foodID,demandID,quantity) VALUES (171,18,11,5),(172,24,42,7),(173,27,11,4),(174,1,4,5),(175,43,43,6),(176,13,4,5),(177,37,25,4),(178,12,6,9),(179,42,42,3),(180,28,28,2);
+INSERT INTO Demanded (demandedID,foodID,demandID,quantity) VALUES (171,18,11,5),(172,24,42,7),(173,27,11,4),(174,2,4,5),(175,43,43,6),(176,13,4,5),(177,37,25,4),(178,12,6,9),(179,42,42,3),(180,28,28,2);
 INSERT INTO Demanded (demandedID,foodID,demandID,quantity) VALUES (181,48,31,3),(182,8,35,8),(183,49,16,9),(184,11,7,6),(185,29,42,7),(186,44,44,8),(187,43,40,7),(188,9,43,5),(189,39,43,6),(190,18,33,4);
-INSERT INTO Demanded (demandedID,foodID,demandID,quantity) VALUES (191,27,41,7),(192,46,33,2),(193,1,40,7),(194,41,4,4),(195,21,6,7),(196,22,49,5),(197,50,21,9),(198,35,27,7),(199,48,13,4),(200,10,47,9);
+INSERT INTO Demanded (demandedID,foodID,demandID,quantity) VALUES (191,27,41,7),(192,46,33,2),(193,2,40,7),(194,41,4,4),(195,21,6,7),(196,22,49,5),(197,50,21,9),(198,35,27,7),(199,48,13,4),(200,10,47,9);
 --SELECT * FROM Demanded;
 
 
