@@ -2,6 +2,8 @@
 .headers on
 .nullvalue NULL
 
+--CLientes que só encomendaram de um restaurant
+
 SELECT
   Customer.customerNIF,
   Person.name,
@@ -17,6 +19,4 @@ INNER JOIN Restaurant ON Food.restaurantID = Restaurant.restaurantID
 GROUP BY
   Customer.customerNIF
 HAVING
-  COUNT(DISTINCT Restaurant.restaurantID) = 1
-ORDER BY
-  COUNT(DISTINCT Restaurant.restaurantID) ASC;
+  COUNT(DISTINCT Restaurant.restaurantID) = 1;

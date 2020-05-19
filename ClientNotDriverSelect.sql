@@ -2,6 +2,8 @@
 .headers on
 .nullvalue NULL
 
+--Clientes que não são drivers
+
 SELECT
   CustomerNIF
 from Customer

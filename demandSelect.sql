@@ -2,6 +2,8 @@
 .headers on
 .nullvalue NULL
 
+--info relacionada com a demand
+
 SELECT
   Demand.demandId,
   date,

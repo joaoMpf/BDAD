@@ -2,6 +2,8 @@
 .headers on
 .nullvalue NULL
 
+--Clientes que não encomendaram de este restaurant
+
 SELECT
   Customer.customerNIF,
   Person.name
