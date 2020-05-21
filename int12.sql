@@ -8,7 +8,7 @@ DROP VIEW IF EXISTS NonTeamDrivers;
 
 --Demands feitas por condutores que pertencem a equipas
 CREATE VIEW TeamDrivers (
-  demandID
+  driverNIF
 )
 AS
 SELECT
@@ -22,7 +22,7 @@ GROUP BY
 
 --Demands feitas por condutores que não pertencem a equipas
 CREATE VIEW NonTeamDrivers (
-  demandID
+  driverNIF
 )
 AS
 SELECT
@@ -37,20 +37,22 @@ INNER JOIN Team ON Team.driverNIF = Driver.driverNIF
 GROUP BY
   Driver.driverNIF;
 
-
+  SELECT
+    COUNT(TeamDrivers.driverNIF)
+  FROM TeamDrivers;
 --Ganho médio por condutor que pertence a uma equipa
 SELECT
-  Demand.demandID,
-  COUNT(Demand.demandID),
-  SUM(price)
-FROM Driver
-INNER JOIN TeamDemands ON TeamDemands.demandID = Demand.demandID;
+  COUNT(TeamDrivers.driverNIF),
+  AVG(Demand.price)
+FROM TeamDrivers
+INNER JOIN Demand ON Demand.driverNIF = TeamDrivers.driverNIF;
 
-
+SELECT
+  COUNT(NonTeamDrivers.driverNIF)
+FROM NonTeamDrivers;
 --Ganho médio por condutor que não pertence a uma equipa
 SELECT
-  Demand.demandID,
-  COUNT(Demand.demandID),
-  AVG(price)
-FROM Demand
-INNER JOIN NonTeamDemands ON NonTeamDemands.demandID = Demand.demandID;
+  COUNT(NonTeamDrivers.driverNIF),
+  AVG(Demand.price)
+FROM NonTeamDrivers
+INNER JOIN Demand ON Demand.driverNIF = NonTeamDrivers.driverNIF;
