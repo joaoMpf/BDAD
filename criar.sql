@@ -77,8 +77,7 @@ CREATE TABLE Demand (
   date TEXT NOT NULL,
   specification TEXT,
   delivery_fee REAL NOT NULL CHECK(delivery_fee >= 0),
-  price REAL NOT NULL CHECK(price >= 0),
-  --TODO: meter calculos
+  price REAL CHECK(price >= 0),
   number_cc INTEGER, --TODO: se paymentType = 1 (creditCard) -> update number_cc com creditCard de customer
   customerNIF INTEGER REFERENCES Customer(customerNIF),
   driverNIF INTEGER REFERENCES Driver(driverNIF),
@@ -162,44 +161,9 @@ CREATE TABLE InvoiceLine (
   FOREIGN KEY(invoiceID) REFERENCES Invoice(invoiceID),
   CONSTRAINT invoice_line_pk PRIMARY KEY (invoice_lineID)
 );
-/*drivers' average rating calculations*/
-CREATE TRIGGER aft_insert_review
-AFTER
-INSERT ON Review BEGIN
-UPDATE Driver
-SET
-  rating_average = (
-    SELECT
-      AVG(Review.rating)
-    FROM Demand
-    JOIN Review
-    WHERE
-      (
-        Demand.driverNIF = Driver.driverNIF
-        AND Demand.demandID = Review.demandID
-      )
-  )
-WHERE
-  driverNIF = Driver.driverNIF;
-END;
-/*restaurants' average rating calculations*/
-CREATE TRIGGER aft_insert_rating
-AFTER
-INSERT ON Rating BEGIN
-UPDATE Restaurant
-SET
-  rating_average = (
-    SELECT
-      AVG(Rating.rating)
-    FROM Demand
-    JOIN Rating
-    WHERE
-      (Rating.restaurantID = Restaurant.restaurantID)
-  )
-WHERE
-  restaurantID = Restaurant.restaurantID;
-END;
-/*Show Driver table*/
-SELECT
-  *
-FROM Driver;
+
+-- .read /home/camilinha/Documents/bdad/proj/gatilho1_adiciona.sql
+-- .read /home/camilinha/Documents/bdad/proj/gatilho2_adiciona.sql
+-- .read /home/camilinha/Documents/bdad/proj/gatilho3_adiciona.sql
+-- .read /home/camilinha/Documents/bdad/proj/gatilho4_adiciona.sql
+-- .read /home/camilinha/Documents/bdad/proj/povoar.sql
