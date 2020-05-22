@@ -77,8 +77,9 @@ CREATE TABLE Demand (
   date TEXT NOT NULL,
   specification TEXT,
   delivery_fee REAL NOT NULL CHECK(delivery_fee >= 0),
-  price REAL CHECK(price >= 0),
-  number_cc INTEGER, --TODO: se paymentType = 1 (creditCard) -> update number_cc com creditCard de customer
+  price REAL CHECK(price >= delivery_fee),
+  number_cc INTEGER,
+  --TODO: se paymentType = 1 (creditCard) -> update number_cc com creditCard de customer
   customerNIF INTEGER REFERENCES Customer(customerNIF),
   driverNIF INTEGER REFERENCES Driver(driverNIF),
   locationID INTEGER REFERENCES Location(locationID),
@@ -146,8 +147,7 @@ CREATE TABLE Location (
 );
 CREATE TABLE Invoice (
   invoiceID INTEGER,
-  total REAL NOT NULL,
-  --TODO: meter calculos
+  total REAL CHECK(total >= 0),
   date TEXT NOT NULL,
   DemandID INTEGER,
   FOREIGN KEY(DemandID) REFERENCES Demand(DemandID),
@@ -162,8 +162,13 @@ CREATE TABLE InvoiceLine (
   CONSTRAINT invoice_line_pk PRIMARY KEY (invoice_lineID)
 );
 
--- .read /home/camilinha/Documents/bdad/proj/gatilho1_adiciona.sql
--- .read /home/camilinha/Documents/bdad/proj/gatilho2_adiciona.sql
--- .read /home/camilinha/Documents/bdad/proj/gatilho3_adiciona.sql
--- .read /home/camilinha/Documents/bdad/proj/gatilho4_adiciona.sql
--- .read /home/camilinha/Documents/bdad/proj/povoar.sql
+.read /home/camilinha/Documents/bdad/proj/gatilho1_adiciona.sql
+.read /home/camilinha/Documents/bdad/proj/gatilho2_adiciona.sql
+.read /home/camilinha/Documents/bdad/proj/gatilho3_adiciona.sql
+.read /home/camilinha/Documents/bdad/proj/gatilho4_adiciona.sql
+.read /home/camilinha/Documents/bdad/proj/gatilho5_adiciona.sql
+.read /home/camilinha/Documents/bdad/proj/povoar.sql
+
+.mode columns
+.headers on
+.nullvalue NULL

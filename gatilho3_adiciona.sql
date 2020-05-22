@@ -1,4 +1,4 @@
-/*restaurants' average rating calculations*/
+/*Update Demand price according to demanded associated with each Demand*/
 CREATE TRIGGER aft_insert_demanded
 AFTER
 INSERT ON Demanded BEGIN
@@ -10,7 +10,7 @@ SET
     FROM Demanded
     INNER JOIN Food ON Food.foodID = Demanded.foodID
     WHERE
-      demandID = Demand.demandID
+      Demanded.demandID = Demand.demandID
   )
 WHERE
   demandID = Demand.demandID;
