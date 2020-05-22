@@ -167,6 +167,8 @@ CREATE TABLE InvoiceLine (
 .read /home/camilinha/Documents/bdad/proj/gatilho3_adiciona.sql
 .read /home/camilinha/Documents/bdad/proj/gatilho4_adiciona.sql
 .read /home/camilinha/Documents/bdad/proj/gatilho5_adiciona.sql
+.read /home/camilinha/Documents/bdad/proj/gatilho6_adiciona.sql
+.read /home/camilinha/Documents/bdad/proj/gatilho7_adiciona.sql
 .read /home/camilinha/Documents/bdad/proj/povoar.sql
 
 .mode columns

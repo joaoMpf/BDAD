@@ -11,8 +11,6 @@ SET
     WHERE
       CreditCard.customerNIF = Demand.customerNIF
       AND Demand.paymentTypeID = 1 
-      -- AND strftime('%Y', CreditCard.exp_date) > strftime('%Y', Demand.date)
-      -- AND strftime('%m', CreditCard.exp_date) > strftime('%m', Demand.date)
-      -- AND strftime('%d', CreditCard.exp_date) > strftime('%d', Demand.date)
+      AND strftime('%Y-%m-%d', CreditCard.exp_date) < strftime('%Y-%m-%d', Demand.date)
   );
 END;
