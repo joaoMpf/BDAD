@@ -77,14 +77,14 @@ CREATE TABLE Demand (
   date TEXT NOT NULL,
   specification TEXT,
   delivery_fee REAL NOT NULL CHECK(delivery_fee >= 0),
-  price REAL NOT NULL CHECK(price >= 0),
-  --TODO: meter calculos
-  number_cc INTEGER, --TODO: se paymentType = 1 (creditCard) -> update number_cc com creditCard de customer
+  price REAL CHECK(price >= delivery_fee),
+  number_cc INTEGER,
+  --TODO: se paymentType = 1 (creditCard) -> update number_cc com creditCard de customer
   customerNIF INTEGER REFERENCES Customer(customerNIF),
   driverNIF INTEGER REFERENCES Driver(driverNIF),
   locationID INTEGER REFERENCES Location(locationID),
   paymentTypeID INTEGER REFERENCES PaymentType(paymentTypeID),
-  FOREIGN KEY(customerNIF, number_cc) REFERENCES CreditCard(customerNIF, number_cc),
+  -- FOREIGN KEY(customerNIF, number_cc) REFERENCES CreditCard(customerNIF, number_cc),
   CONSTRAINT demand_pk PRIMARY KEY (demandID)
 );
 CREATE TABLE Demanded (
@@ -147,8 +147,7 @@ CREATE TABLE Location (
 );
 CREATE TABLE Invoice (
   invoiceID INTEGER,
-  total REAL NOT NULL,
-  --TODO: meter calculos
+  total REAL CHECK(total >= 0),
   date TEXT NOT NULL,
   DemandID INTEGER,
   FOREIGN KEY(DemandID) REFERENCES Demand(DemandID),
@@ -162,44 +161,33 @@ CREATE TABLE InvoiceLine (
   FOREIGN KEY(invoiceID) REFERENCES Invoice(invoiceID),
   CONSTRAINT invoice_line_pk PRIMARY KEY (invoice_lineID)
 );
-/*drivers' average rating calculations*/
-CREATE TRIGGER aft_insert_review
-AFTER
-INSERT ON Review BEGIN
-UPDATE Driver
-SET
-  rating_average = (
-    SELECT
-      AVG(Review.rating)
-    FROM Demand
-    JOIN Review
-    WHERE
-      (
-        Demand.driverNIF = Driver.driverNIF
-        AND Demand.demandID = Review.demandID
-      )
-  )
-WHERE
-  driverNIF = Driver.driverNIF;
-END;
-/*restaurants' average rating calculations*/
-CREATE TRIGGER aft_insert_rating
-AFTER
-INSERT ON Rating BEGIN
-UPDATE Restaurant
-SET
-  rating_average = (
-    SELECT
-      AVG(Rating.rating)
-    FROM Demand
-    JOIN Rating
-    WHERE
-      (Rating.restaurantID = Restaurant.restaurantID)
-  )
-WHERE
-  restaurantID = Restaurant.restaurantID;
-END;
-/*Show Driver table*/
-SELECT
-  *
-FROM Driver;
+
+
+
+.read /home/camilinha/Documents/bdad/proj/gatilho1_adiciona.sql
+.read /home/camilinha/Documents/bdad/proj/gatilho2_adiciona.sql
+.read /home/camilinha/Documents/bdad/proj/gatilho3_adiciona.sql
+.read /home/camilinha/Documents/bdad/proj/gatilho4_adiciona.sql
+.read /home/camilinha/Documents/bdad/proj/gatilho5_adiciona.sql
+.read /home/camilinha/Documents/bdad/proj/gatilho6_adiciona.sql
+.read /home/camilinha/Documents/bdad/proj/gatilho7_adiciona.sql
+-- .read /home/camilinha/Documents/bdad/proj/povoar.sql
+
+.read /home/camilinha/Documents/bdad/proj/gatilho3_verifica.sql
+
+-- .read C:/Users/Camilinha/Documents/bdad/BDAD/gatilho1_adiciona.sql
+-- .read C:/Users/Camilinha/Documents/bdad/BDAD/gatilho2_adiciona.sql
+-- .read C:/Users/Camilinha/Documents/bdad/BDAD/gatilho3_adiciona.sql
+-- .read C:/Users/Camilinha/Documents/bdad/BDAD/gatilho4_adiciona.sql
+-- .read C:/Users/Camilinha/Documents/bdad/BDAD/gatilho5_adiciona.sql
+-- .read C:/Users/Camilinha/Documents/bdad/BDAD/gatilho6_adiciona.sql
+-- .read C:/Users/Camilinha/Documents/bdad/BDAD/gatilho7_adiciona.sql
+-- .read C:/Users/Camilinha/Documents/bdad/BDAD/povoar.sql
+
+.mode columns
+.headers on
+.nullvalue NULL
+
+-- .read C:/Users/Camilinha/Documents/bdad/BDAD/int11.sql
+-- .read /home/camilinha/Documents/bdad/proj/int09.sql
+-- SELECT Location.city from Demand INNER JOIN Location ON Location.locationID = Demand.locationID GROUP BY Location.city;
