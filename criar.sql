@@ -167,11 +167,11 @@ CREATE TABLE InvoiceLine (
 --.read gatilho1_adiciona.sql
 --.read verificar1.sql
 
---.read gatilho2_adiciona.sql
---.read verificar2.sql
+.read gatilho2_adiciona.sql
+.read verificar2.sql
 
-.read gatilho3_adiciona.sql
-.read verificar3.sql
+--.read gatilho3_adiciona.sql
+--.read verificar3.sql
 
 --.read gatilho4_adiciona.sql
 
