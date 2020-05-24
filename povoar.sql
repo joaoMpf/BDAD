@@ -224,7 +224,7 @@ INSERT INTO Restaurant (restaurantID, name,NIF,locationID, rating_average, resta
 
 
 
-INSERT INTO Food (foodID,name,price,restaurantID) VALUES (1,"Hamburguer","5,84",1),(2,"Hamburguer","5,69",2),(3,"Frango Assado","4,93",3),(4,"Café","21,97",4),(5,"Frango Assado","23,13",5),(6,"Pizza","7,02",6),(7,"Hamburguer","21,53",7),(8,"Café","23,87",8),(9,"Doce da Casa","14,59",9),(10,"Francesinha","23,03",10);
+INSERT INTO Food (foodID,name,price,restaurantID) VALUES (1,"Hamburguer",5.84,1),(2,"Hamburguer",5.69,2),(3,"Frango Assado",4.93,3),(4,"Café",21.97,4),(5,"Frango Assado",23.13,5),(6,"Pizza","7,02",6),(7,"Hamburguer","21,53",7),(8,"Café","23,87",8),(9,"Doce da Casa","14,59",9),(10,"Francesinha","23,03",10);
 INSERT INTO Food (foodID,name,price,restaurantID) VALUES (11,"Frango Assado","20,16",11),(12,"Hamburguer","21,84",12),(13,"Francesinha","3,56",13),(14,"Bacalhau à Braz","16,52",14),(15,"Bacalhau à Braz","15,04",15),(16,"Café","12,81",16),(17,"Café","4,20",17),(18,"Noodles","8,53",18),(19,"Francesinha","14,64",19),(20,"Café","29,08",20);
 INSERT INTO Food (foodID,name,price,restaurantID) VALUES (21,"Doce da Casa","10,64",21),(22,"Hamburguer","23,95",22),(23,"Hamburguer","14,82",23),(24,"Sopa do Dia","27,15",24),(25,"Pizza","17,91",25),(26,"Pizza","7,32",26),(27,"Doce da Casa","9,18",27),(28,"Francesinha","8,28",28),(29,"Sopa do Dia","8,31",29),(30,"Sopa do Dia","26,72",30);
 INSERT INTO Food (foodID,name,price,restaurantID) VALUES (31,"Doce da Casa","9,89",31),(32,"Noodles","20,29",32),(33,"Francesinha","6,31",33),(34,"Bacalhau à Braz","29,24",34),(35,"Noodles","29,14",35),(36,"Sopa do Dia","29,67",36),(37,"Frango Assado","22,44",37),(38,"Doce da Casa","19,27",38),(39,"Hamburguer","27,68",39),(40,"Frango Assado","24,10",40);

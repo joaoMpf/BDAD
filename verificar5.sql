@@ -27,59 +27,69 @@ INSERT INTO Restaurant (restaurantID, name,NIF,locationID, rating_average, resta
 (2,"Nec Urna Et Limited",109999999,2,-1,2);
 
 INSERT INTO Food (foodID,name,price,restaurantID) VALUES
-(1,"Hamburguer","5,84",1),
-(2,"Hamburguer","5,69",2);
+(1,"Hamburguer",5.99,1),
+(2,"Hamburguer",3.99,2);
 
 
 INSERT INTO Demand (demandID,date,specification,delivery_fee,customerNIF,driverNIF,locationID,paymentTypeID) VALUES 
 (1,"2020-04-15 08:56:46","pellentesque eget, dictum","6.25",100000003,100000001,1,2),
 (2,"2019-06-23 04:12:51","enim, sit amet ornare lectus justo eu arcu. Morbi sit","2.77",100000004,100000001,1,1),
-(3,"2019-10-07 05:11:34","eu nibh vulputate mauris sagittis placerat.","4.79",100000003,100000001,1,2),
-(4,"2019-08-01 01:26:03","mauris blandit mattis. Cras","2.52",100000004,100000001,1,1),
-(5,"2019-08-26 19:56:12","eu","6.93",100000003,100000001,1,2),
-
-(6,"2020-01-15 07:41:05","tempor","1.91",100000004,100000002,1,2),
-(7,"2019-04-20 08:19:06","non, hendrerit","9.28",100000003,100000002,1,2),
-(8,"2019-07-03 12:23:28","ac nulla. In tincidunt","1.45",100000004,100000002,1,2),
-(9,"2020-01-22 01:11:21","dictum augue malesuada malesuada. Integer","5.48",100000003,100000002,1,2),
-(10,"2019-11-22 15:54:30","tristique neque","3.52",100000004,100000002,2,2);
+(3,"2019-10-07 05:11:34","eu nibh vulputate mauris sagittis placerat.","4.79",100000003,100000001,1,2);
 
 INSERT INTO Demanded (demandedID,foodID,demandID,quantity) VALUES
 (1,1,1,9),
 (2,1,2,1),
-(3,1,3,5),
-(4,1,4,2),
-(5,1,5,7),
-(6,2,6,8),
-(7,2,7,9),
-(8,2,8,8),
-(9,2,9,6),
-(10,2,10,4);
+(3,2,3,5);
 
 INSERT INTO Invoice (invoiceID, total, date, DemandID) VALUES
-(1, 0, "4-20-2069", 1),
-(2, 0, "4-20-2069", 2),
-(3, 0, "4-20-2069", 3),
-(4, 0, "4-20-2069", 4),
-(5, 0, "4-20-2069", 5),
-(6, 0, "4-20-2069", 6),
-(7, 0, "4-20-2069", 7),
-(8, 0, "4-20-2069", 8),
-(9, 0, "4-20-2069", 9),
-(10, 0, "4-20-2069", 10);
+(1, 0, "4-20-2020", 1),
+(2, 0, "4-20-2020", 2),
+(3, 0, "4-20-2020", 3);
 
-SELECT * FROM Invoice; 
+SELECT "";
+SELECT "Invoices' total before invoiceLine are inserted: ";
+SELECT total FROM Invoice; 
+SELECT "";
+
 
 INSERT INTO InvoiceLine (invoice_lineID, demandedID, invoiceID) VALUES
 (1,1,1),
 (2,2,2),
-(3,3,3),
-(4,4,4),
-(5,5,5),
-(6,6,6),
-(7,7,7),
-(8,8,8),
-(9,9,9),
-(10,10,10);
+(3,3,3);
 
-SELECT * FROM Invoice;
+SELECT "";
+SELECT "Invoice 1:";
+SELECT "";
+SELECT "Food price: ";
+SELECT price FROM Food WHERE foodID = 1;
+SELECT "Quantity: ";
+SELECT quantity FROM Demanded WHERE demandedID = 1;
+SELECT "Delivery Fee: ";
+SELECT delivery_fee FROM Demand WHERE demandID = 1;
+SELECT "";
+
+SELECT "";
+SELECT "Invoice 2:";
+SELECT "";
+SELECT "Food price: ";
+SELECT price FROM Food WHERE foodID = 1;
+SELECT "Quantity: ";
+SELECT quantity FROM Demanded WHERE demandedID = 2;
+SELECT "Delivery Fee: ";
+SELECT delivery_fee FROM Demand WHERE demandID = 2;
+SELECT "";
+
+SELECT "";
+SELECT "Invoice 3:";
+SELECT "";
+SELECT "Food price: ";
+SELECT price FROM Food WHERE foodID = 2;
+SELECT "Quantity: ";
+SELECT quantity FROM Demanded WHERE demandedID = 3;
+SELECT "Delivery Fee: ";
+SELECT delivery_fee FROM Demand WHERE demandID = 3;
+SELECT "";
+
+
+SELECT "Invoices' total after invoiceLine are inserted:";
+SELECT total FROM Invoice;
