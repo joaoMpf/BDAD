@@ -173,7 +173,7 @@ CREATE TABLE InvoiceLine (
 .read /home/camilinha/Documents/bdad/proj/gatilho7_adiciona.sql
 -- .read /home/camilinha/Documents/bdad/proj/povoar.sql
 
-.read /home/camilinha/Documents/bdad/proj/gatilho3_verifica.sql
+.read /home/camilinha/Documents/bdad/proj/gatilho4_verifica.sql
 
 -- .read C:/Users/Camilinha/Documents/bdad/BDAD/gatilho1_adiciona.sql
 -- .read C:/Users/Camilinha/Documents/bdad/BDAD/gatilho2_adiciona.sql
@@ -189,5 +189,5 @@ CREATE TABLE InvoiceLine (
 .nullvalue NULL
 
 -- .read C:/Users/Camilinha/Documents/bdad/BDAD/int11.sql
--- .read /home/camilinha/Documents/bdad/proj/int09.sql
+-- .read /home/camilinha/Documents/bdad/proj/int13.sql
 -- SELECT Location.city from Demand INNER JOIN Location ON Location.locationID = Demand.locationID GROUP BY Location.city;
