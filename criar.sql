@@ -84,7 +84,7 @@ CREATE TABLE Demand (
   driverNIF INTEGER REFERENCES Driver(driverNIF),
   locationID INTEGER REFERENCES Location(locationID),
   paymentTypeID INTEGER REFERENCES PaymentType(paymentTypeID),
-  FOREIGN KEY(customerNIF, number_cc) REFERENCES CreditCard(customerNIF, number_cc),
+  -- FOREIGN KEY(customerNIF, number_cc) REFERENCES CreditCard(customerNIF, number_cc),
   CONSTRAINT demand_pk PRIMARY KEY (demandID)
 );
 CREATE TABLE Demanded (
@@ -162,15 +162,26 @@ CREATE TABLE InvoiceLine (
   CONSTRAINT invoice_line_pk PRIMARY KEY (invoice_lineID)
 );
 
-.read /home/camilinha/Documents/bdad/proj/gatilho1_adiciona.sql
-.read /home/camilinha/Documents/bdad/proj/gatilho2_adiciona.sql
-.read /home/camilinha/Documents/bdad/proj/gatilho3_adiciona.sql
-.read /home/camilinha/Documents/bdad/proj/gatilho4_adiciona.sql
-.read /home/camilinha/Documents/bdad/proj/gatilho5_adiciona.sql
-.read /home/camilinha/Documents/bdad/proj/gatilho6_adiciona.sql
-.read /home/camilinha/Documents/bdad/proj/gatilho7_adiciona.sql
-.read /home/camilinha/Documents/bdad/proj/povoar.sql
+-- .read /home/camilinha/Documents/bdad/proj/gatilho1_adiciona.sql
+-- .read /home/camilinha/Documents/bdad/proj/gatilho2_adiciona.sql
+-- .read /home/camilinha/Documents/bdad/proj/gatilho3_adiciona.sql
+-- .read /home/camilinha/Documents/bdad/proj/gatilho4_adiciona.sql
+-- .read /home/camilinha/Documents/bdad/proj/gatilho5_adiciona.sql
+-- .read /home/camilinha/Documents/bdad/proj/gatilho6_adiciona.sql
+-- .read /home/camilinha/Documents/bdad/proj/gatilho7_adiciona.sql
+-- .read /home/camilinha/Documents/bdad/proj/povoar.sql
+
+.read C:/Users/Camilinha/Documents/bdad/BDAD/gatilho1_adiciona.sql
+.read C:/Users/Camilinha/Documents/bdad/BDAD/gatilho2_adiciona.sql
+.read C:/Users/Camilinha/Documents/bdad/BDAD/gatilho3_adiciona.sql
+.read C:/Users/Camilinha/Documents/bdad/BDAD/gatilho4_adiciona.sql
+.read C:/Users/Camilinha/Documents/bdad/BDAD/gatilho5_adiciona.sql
+.read C:/Users/Camilinha/Documents/bdad/BDAD/gatilho6_adiciona.sql
+.read C:/Users/Camilinha/Documents/bdad/BDAD/gatilho7_adiciona.sql
+.read C:/Users/Camilinha/Documents/bdad/BDAD/povoar.sql
 
 .mode columns
 .headers on
 .nullvalue NULL
+
+.read C:/Users/Camilinha/Documents/bdad/BDAD/int11.sql

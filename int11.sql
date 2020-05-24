@@ -5,12 +5,11 @@
 --Mês com mais faturação
 
 SELECT
-  strftime('%Y', date) AS year,
-  strftime('%m', date) AS month,
+  strftime('%Y-%m', date) AS month,
   SUM(price) AS total
 FROM Demand
 GROUP BY
-  strftime('%m', date)
+  strftime('%Y-%m', date)
 ORDER BY
-  total DESC
+  total DESC;
 LIMIT 1;
