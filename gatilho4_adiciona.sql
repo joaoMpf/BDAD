@@ -14,11 +14,5 @@ SET
     WHERE
       CreditCard.customerNIF = Demand.customerNIF
       AND Demand.paymentTypeID = 1
-      -- AND strftime('%Y-%m-%d', CreditCard.exp_date) < strftime('%Y-%m-%d', Demand.date)
   );
 END;
---TODO: FALTA RAISE ERRO
-
--- CASE
---   WHEN strftime('%Y-%m-%d', CreditCard.exp_date) < strftime('%Y-%m-%d', Demand.date) THEN RAISE(ABORT, 'Credit Card expired')
--- END;

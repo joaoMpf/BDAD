@@ -41,63 +41,17 @@ INSERT INTO Invoice (invoiceID, total, date, DemandID) VALUES
 (2, 0, "4-20-2020", 2),
 (3, 0, "4-20-2020", 3);
 
+SELECT "";
+SELECT "InvoiceLines before insertion of Demandeds:";
+SELECT * FROM InvoiceLine;
+SELECT "";
+
 INSERT INTO Demanded (demandedID,foodID,demandID,quantity) VALUES
 (1,1,1,9),
 (2,1,2,1),
 (3,2,3,5);
 
-
-
-
-
-
-
-
 SELECT "";
-SELECT "Invoices' total before invoiceLine are inserted: ";
-SELECT total FROM Invoice; 
-SELECT "";
-
-
-INSERT INTO InvoiceLine (invoice_lineID, demandedID, invoiceID) VALUES
-(1,1,1),
-(2,2,2),
-(3,3,3);
-
-SELECT "";
-SELECT "Invoice 1:";
-SELECT "";
-SELECT "Food price: ";
-SELECT price FROM Food WHERE foodID = 1;
-SELECT "Quantity: ";
-SELECT quantity FROM Demanded WHERE demandedID = 1;
-SELECT "Delivery Fee: ";
-SELECT delivery_fee FROM Demand WHERE demandID = 1;
-SELECT "";
-
-SELECT "";
-SELECT "Invoice 2:";
-SELECT "";
-SELECT "Food price: ";
-SELECT price FROM Food WHERE foodID = 1;
-SELECT "Quantity: ";
-SELECT quantity FROM Demanded WHERE demandedID = 2;
-SELECT "Delivery Fee: ";
-SELECT delivery_fee FROM Demand WHERE demandID = 2;
-SELECT "";
-
-SELECT "";
-SELECT "Invoice 3:";
-SELECT "";
-SELECT "Food price: ";
-SELECT price FROM Food WHERE foodID = 2;
-SELECT "Quantity: ";
-SELECT quantity FROM Demanded WHERE demandedID = 3;
-SELECT "Delivery Fee: ";
-SELECT delivery_fee FROM Demand WHERE demandID = 3;
-SELECT "";
-
-
-SELECT "Invoices' total after invoiceLine are inserted:";
-SELECT total FROM Invoice;
+SELECT "InvoiceLines after insertion of Demandeds:";
+SELECT * FROM InvoiceLine;
 SELECT "";

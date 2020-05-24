@@ -174,11 +174,15 @@ CREATE TABLE InvoiceLine (
 
 --.read gatilho4_adiciona.sql
 
-.read gatilho5_adiciona.sql
-.read verificar5.sql
+--.read gatilho5_adiciona.sql
+--.read verificar5.sql
 
 --.read gatilho6_adiciona.sql
---.read gatilho7_adiciona.sql
+--.read verificar6.sql
+
+.read gatilho7_adiciona.sql
+.read verificar7.sql
+
 --.read povoar.sql
 
 

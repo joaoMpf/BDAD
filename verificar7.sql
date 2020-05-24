@@ -31,73 +31,17 @@ INSERT INTO Food (foodID,name,price,restaurantID) VALUES
 (2,"Hamburguer",3.99,2);
 
 
+SELECT "";
+SELECT "Invoices before insertion of Demands:";
+SELECT * FROM Invoice;
+SELECT "";
+
 INSERT INTO Demand (demandID,date,specification,delivery_fee,customerNIF,driverNIF,locationID,paymentTypeID) VALUES 
 (1,"2020-04-15 08:56:46","pellentesque eget, dictum","6.25",100000003,100000001,1,2),
 (2,"2019-06-23 04:12:51","enim, sit amet ornare lectus justo eu arcu. Morbi sit","2.77",100000004,100000001,1,1),
 (3,"2019-10-07 05:11:34","eu nibh vulputate mauris sagittis placerat.","4.79",100000003,100000001,1,2);
 
-INSERT INTO Invoice (invoiceID, total, date, DemandID) VALUES
-(1, 0, "4-20-2020", 1),
-(2, 0, "4-20-2020", 2),
-(3, 0, "4-20-2020", 3);
-
-INSERT INTO Demanded (demandedID,foodID,demandID,quantity) VALUES
-(1,1,1,9),
-(2,1,2,1),
-(3,2,3,5);
-
-
-
-
-
-
-
-
 SELECT "";
-SELECT "Invoices' total before invoiceLine are inserted: ";
-SELECT total FROM Invoice; 
-SELECT "";
-
-
-INSERT INTO InvoiceLine (invoice_lineID, demandedID, invoiceID) VALUES
-(1,1,1),
-(2,2,2),
-(3,3,3);
-
-SELECT "";
-SELECT "Invoice 1:";
-SELECT "";
-SELECT "Food price: ";
-SELECT price FROM Food WHERE foodID = 1;
-SELECT "Quantity: ";
-SELECT quantity FROM Demanded WHERE demandedID = 1;
-SELECT "Delivery Fee: ";
-SELECT delivery_fee FROM Demand WHERE demandID = 1;
-SELECT "";
-
-SELECT "";
-SELECT "Invoice 2:";
-SELECT "";
-SELECT "Food price: ";
-SELECT price FROM Food WHERE foodID = 1;
-SELECT "Quantity: ";
-SELECT quantity FROM Demanded WHERE demandedID = 2;
-SELECT "Delivery Fee: ";
-SELECT delivery_fee FROM Demand WHERE demandID = 2;
-SELECT "";
-
-SELECT "";
-SELECT "Invoice 3:";
-SELECT "";
-SELECT "Food price: ";
-SELECT price FROM Food WHERE foodID = 2;
-SELECT "Quantity: ";
-SELECT quantity FROM Demanded WHERE demandedID = 3;
-SELECT "Delivery Fee: ";
-SELECT delivery_fee FROM Demand WHERE demandID = 3;
-SELECT "";
-
-
-SELECT "Invoices' total after invoiceLine are inserted:";
-SELECT total FROM Invoice;
+SELECT "Invoices after insertion of Demands:";
+SELECT * FROM Invoice;
 SELECT "";
