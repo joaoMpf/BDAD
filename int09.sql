@@ -6,7 +6,7 @@
 
 SELECT
   RestaurantType.type,
-  COUNT(Restaurant.restaurantID) AS 'numer of orders'
+  COUNT(Restaurant.restaurantID) AS number_of_orders
 FROM Demanded
 INNER JOIN Food ON Demanded.foodID = Food.foodID
 INNER JOIN Restaurant ON Restaurant.restaurantID = Food.restaurantID
@@ -14,4 +14,5 @@ INNER JOIN RestaurantType ON RestaurantType.restaurantTypeID = Restaurant.restau
 GROUP BY
   RestaurantType.restaurantTypeID
 ORDER BY
-  'numer of orders' DESC;
+  number_of_orders DESC
+LIMIT 5;

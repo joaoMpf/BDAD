@@ -79,3 +79,12 @@ SELECT
   END AS 'Conclusion'
 FROM AvgSalaryTeamDrivers
 INNER JOIN AvgSalaryNonTeamDrivers;
+
+
+DROP VIEW IF EXISTS TeamDrivers;
+DROP VIEW IF EXISTS NumTeamDrivers;
+DROP VIEW IF EXISTS AvgSalaryTeamDrivers;
+
+DROP VIEW IF EXISTS NonTeamDrivers;
+DROP VIEW IF EXISTS NumNonTeamDrivers;
+DROP VIEW IF EXISTS AvgSalaryNonTeamDrivers;

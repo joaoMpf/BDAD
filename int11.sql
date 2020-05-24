@@ -11,5 +11,5 @@ FROM Demand
 GROUP BY
   strftime('%Y-%m', date)
 ORDER BY
-  total DESC;
+  total DESC
 LIMIT 1;

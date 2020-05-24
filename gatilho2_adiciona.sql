@@ -7,8 +7,7 @@ SET
   rating_average = (
     SELECT
       AVG(Rating.rating)
-    FROM Demand
-    JOIN Rating
+    FROM Rating
     WHERE
       (Rating.restaurantID = Restaurant.restaurantID)
   )
