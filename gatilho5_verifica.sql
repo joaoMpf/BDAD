@@ -1,3 +1,8 @@
+.nullvalue NULL
+
+DROP TRIGGER IF EXISTS aft_insert_Demanded_create_InvoiceLine;
+
+
 INSERT INTO Person (NIF,name,birth_date,email,phone,password) VALUES
 (100000001,"Zé","1970-03-14","ze@sitametorci.org","268099833","1QC97NBB0QR"),
 (100000002,"André","1970-03-15","Ingfd@sitametorci.org","268099834","2QC97NBB0QR"),
@@ -45,12 +50,6 @@ INSERT INTO Demanded (demandedID,foodID,demandID,quantity) VALUES
 (1,1,1,9),
 (2,1,2,1),
 (3,2,3,5);
-
-
-
-
-
-
 
 
 SELECT "";
