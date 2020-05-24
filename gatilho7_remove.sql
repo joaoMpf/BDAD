@@ -1,2 +1,2 @@
-/*Update total in Invoice*/
+/*Creat Invoice*/
 DROP TRIGGER IF EXISTS aft_insert_Demand_create_Invoice;

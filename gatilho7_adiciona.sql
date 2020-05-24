@@ -1,4 +1,4 @@
-/*Creat InvoiceLine*/
+/*Creat Invoice*/
 CREATE TRIGGER aft_insert_Demand_create_Invoice
 AFTER
 INSERT ON Demand BEGIN
