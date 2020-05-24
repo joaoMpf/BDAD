@@ -2,17 +2,23 @@
 .headers on
 .nullvalue NULL
 
---5 restaurantes com maior numero de encomendas
+--Tipo de pagamento mais usado por cidade
 
 SELECT
-  RestaurantType.type,
-  COUNT(Restaurant.restaurantID) AS number_of_orders
-FROM Demanded
-INNER JOIN Food ON Demanded.foodID = Food.foodID
-INNER JOIN Restaurant ON Restaurant.restaurantID = Food.restaurantID
-INNER JOIN RestaurantType ON RestaurantType.restaurantTypeID = Restaurant.restaurantTypeID
+  city,
+  payment_method AS 'most used payment method',
+  MAX(num_method) AS 'number of uses'
+FROM(
+    SELECT
+      Location.city AS city,
+      PaymentType.type AS payment_method,
+      COUNT(Demand.paymentTypeID) AS num_method
+    from Demand
+    INNER JOIN Location ON Location.locationID = Demand.locationID
+    INNER JOIN PaymentType ON PaymentType.paymentTypeID = Demand.paymentTypeID
+    GROUP BY
+      Location.city,
+      Demand.paymentTypeID
+  )
 GROUP BY
-  RestaurantType.restaurantTypeID
-ORDER BY
-  number_of_orders DESC
-LIMIT 5;
+  city;

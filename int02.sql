@@ -2,16 +2,14 @@
 .headers on
 .nullvalue NULL
 
---5 clientes com o número máximo de encomendas
+--Mês com mais faturação
 
 SELECT
-  COUNT(customerNIF) AS occurrence,
-  NIF,
-  name
-from Person
-INNER JOIN Demand ON Person.NIF = Demand.customerNIF
+  strftime('%Y-%m', date) AS month,
+  SUM(price) AS total
+FROM Demand
 GROUP BY
-  customerNIF
+  strftime('%Y-%m', date)
 ORDER BY
-  occurrence DESC
-LIMIT 5;
+  total DESC
+LIMIT 1;

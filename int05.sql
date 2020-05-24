@@ -2,22 +2,17 @@
 .headers on
 .nullvalue NULL
 
---Clientes que não encomendaram de este restaurant
+--5 restaurantes com maior numero de encomendas
 
 SELECT
-  Customer.customerNIF,
-  Person.name
-from Customer
-INNER JOIN Person ON Customer.customerNIF = Person.NIF
-EXCEPT
-SELECT
-  Customer.customerNIF,
-  Person.name
-from Customer
-INNER JOIN Person ON Customer.customerNIF = Person.NIF
-INNER JOIN Demand ON Customer.customerNIF = Demand.customerNIF
-INNER JOIN Demanded ON Demand.demandID = Demanded.demandID
+  RestaurantType.type,
+  COUNT(Restaurant.restaurantID) AS number_of_orders
+FROM Demanded
 INNER JOIN Food ON Demanded.foodID = Food.foodID
-INNER JOIN Restaurant ON Food.restaurantID = Restaurant.restaurantID
-WHERE
-  Restaurant.restaurantID = 7;
+INNER JOIN Restaurant ON Restaurant.restaurantID = Food.restaurantID
+INNER JOIN RestaurantType ON RestaurantType.restaurantTypeID = Restaurant.restaurantTypeID
+GROUP BY
+  RestaurantType.restaurantTypeID
+ORDER BY
+  number_of_orders DESC
+LIMIT 5;
