@@ -68,7 +68,7 @@ INSERT INTO Invoice (invoiceID, total, date, DemandID) VALUES
 (9, 0, "4-20-2069", 9),
 (10, 0, "4-20-2069", 10);
 
-SELECT * FROM Invoice;
+SELECT * FROM Invoice; 
 
 INSERT INTO InvoiceLine (invoice_lineID, demandedID, invoiceID) VALUES
 (1,1,1),
