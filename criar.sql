@@ -170,7 +170,8 @@ CREATE TABLE InvoiceLine (
 --.read gatilho2_adiciona.sql
 --.read verificar2.sql
 
---.read gatilho3_adiciona.sql
+.read gatilho3_adiciona.sql
+.read verificar3.sql
 
 --.read gatilho4_adiciona.sql
 
@@ -180,8 +181,8 @@ CREATE TABLE InvoiceLine (
 --.read gatilho6_adiciona.sql
 --.read verificar6.sql
 
-.read gatilho7_adiciona.sql
-.read verificar7.sql
+--.read gatilho7_adiciona.sql
+--.read verificar7.sql
 
 --.read povoar.sql
 
